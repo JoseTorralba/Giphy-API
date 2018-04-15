@@ -1,0 +1,66 @@
+body {
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+#buttonDiv {
+    width: 1140px;
+    margin: 0 auto;
+    margin-bottom: 2em;
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+}
+
+button {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    display: inline-block;
+    letter-spacing: 0.2em;
+    font-size: 14px;
+    width: auto;
+    height: auto;
+    padding: 1em 2.5em;
+    border: 1px #fff solid;
+    border-color: #000;
+    color: #000;
+    text-transform: uppercase;
+    transition: ease-in-out .33s;
+    margin: 5px;
+}
+
+button:hover {
+    text-decoration: none;
+    background-color: #000;
+    border-color: #CFEC3A;
+    color: #CFEC3A;
+}
+
+
+#gifs {
+    width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+}
+
+.gif {
+    display: inline-block;
+    height: 200px
+    
+}
+
+.gif img {
+    width: 100%;
+    transition: transform 0.5s;
+}
+
+/*
+.gif img:hover {
+    transform: scale(1.10);
+}
+*/
+
+
