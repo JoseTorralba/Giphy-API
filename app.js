@@ -25,15 +25,18 @@ $(document).ready(function () {
 
     // Shows Gif results when button pressed
     $('button').click (function (event) {
+			var offset = Math.round(Math.random() * 100);
 			var query = this.value;
             var key = "gc7kXsvMsDTr6mMHxbc8FMK8D23EPLG2";
-            var url = "http://api.giphy.com/v1/gifs/search?q="
+            var url = "https://api.giphy.com/v1/gifs/search?q="
 
                 + query
                 + videoGames[i]
                 + "&api_key=" 
                 + key
-                + "&limit=15";
+                + "&limit=15"
+				+ "&offset="
+				+ offset;
 
             $.getJSON(url, function (json) {
                 console.log(json);

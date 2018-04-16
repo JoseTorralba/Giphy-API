@@ -7,6 +7,18 @@ h1 {
     text-transform: uppercase;
 }
 
+h2 { 
+    font-size: 1.3em;
+}
+
+a {
+    text-decoration: none;
+    color: #43aa36;
+    transition: color 0.5s;
+}
+
+a:hover { color: #000; }
+
 #buttonDiv {
     width: 1140px;
     margin: 0 auto;
