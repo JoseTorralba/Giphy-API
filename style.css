@@ -11,6 +11,10 @@ h2 {
     font-size: 1.3em;
 }
 
+h3 {
+    margin-top: 2em;
+}
+
 a {
     text-decoration: none;
     color: #43aa36;
@@ -24,16 +28,15 @@ a:hover { color: #000; }
     margin: 0 auto;
     margin-bottom: 2em;
     display: grid;
-    grid-template-columns:  1fr 1fr 1fr;
+    grid-template-columns:  1fr 1fr 1fr 1fr;
 }
 
 button {
     font-family: 'Barlow Semi Condensed', sans-serif;
     display: inline-block;
     letter-spacing: 0.2em;
-    font-size: 14px;
-    width: auto;
-    height: auto;
+    font-size: 12px;
+
     padding: 1em 2.5em;
     border: 1px #fff solid;
     border-color: #000;
@@ -54,6 +57,7 @@ button:hover {
 #gifs {
     width: 800px;
     margin: 0 auto;
+    padding-top: 2em;
     display: grid;
     grid-template-columns:  1fr 1fr 1fr;
 }
@@ -69,10 +73,8 @@ button:hover {
     transition: transform 0.5s;
 }
 
-/*
 .gif img:hover {
     transform: scale(1.10);
 }
-*/
 
 
