@@ -1,19 +1,20 @@
 $(document).ready(function () {
 
-    // Array of video games, sets values in button which then returns results
+    // Array of video games, can be changed to anything video game related
+    // Maybe things like game genres?
     const videoGames = [
         "witcher 3",
-        "Monster Hunter World",
-        "Kingdom Hearts 3",
-        "cats"
+        "Monster Hunter World"
     ];
 
     // Array of filters for video games
+    // Can be changed to like game ratings or something to go with the first array
     const filterChoices = [
         "Main Characters",
         "maps",
         "Enemies"
     ];
+    
     
     let videoGameQuery = "";
     let filterQuery = "";
@@ -31,9 +32,11 @@ $(document).ready(function () {
         gifBtn.appendChild(createButton);
     }
 
-    $('.video-game').on('click', function() {
+
+    $('.video-game').on('click', function () {
         videoGameQuery = this.value;
     });
+
 
     // Displays Filter Buttons
     for (var i = 0; i < filterChoices.length; i++) {
@@ -48,43 +51,42 @@ $(document).ready(function () {
     }
 
 
-    // Shows Gif results when button pressed
-    $('#submit').click (function (event) {
+    // Shows Gif results when button is clicked
+    $('#submit').click(function (event) {
 
-			var offset = Math.round(Math.random() * 100);
+        var offset = Math.round(Math.random() * 100);
+        var query = videoGameQuery + "+" + filterQuery;
+        var key = "gc7kXsvMsDTr6mMHxbc8FMK8D23EPLG2";
+        var url = "https://api.giphy.com/v1/gifs/search?q="
+            + query
+            + "&api_key=" 
+            + key
+            + "&limit=15"
+            + "&offset="
+            + offset;
 
-			var query = videoGameQuery + "+" + filterQuery;
-            var key = "gc7kXsvMsDTr6mMHxbc8FMK8D23EPLG2";
-            var url = "https://api.giphy.com/v1/gifs/search?q="
-                + query
-                + "&api_key=" 
-                + key
-                + "&limit=15"
-				+ "&offset="
-				+ offset;
+        $.getJSON(url, function (json) {
+            console.log(json);
 
-            $.getJSON(url, function (json) {
-                console.log(json);
+            // Hides previous results
+            document.getElementById('gifs').innerHTML = "";
 
-                // Hides previous results
-                document.getElementById('gifs').innerHTML = "";
+            // Displays Gifs
+            for (let i = 0; i < json.data.length; i++) {
 
-                // Displays Gifs
-                for (let i = 0; i < json.data.length; i++) {
+                const gif = json.data[i];
 
-                    const gif = json.data[i];
+                const imgElem = $('<img>')
+                    .attr('src', gif.images.downsized.url)
 
-                    const imgElem = $('<img>')
-                        .attr('src', gif.images.downsized.url)
+                const imgContainer = $('<div>')
+                    .addClass('gif');
 
-                    const imgContainer = $('<div>')
-                        .addClass('gif');
+                imgContainer.append(imgElem)
 
-                    imgContainer.append(imgElem)
-
-                    $('#gifs').append(imgContainer);
-                }
-            }); // JSON
+                $('#gifs').append(imgContainer);
+            }
+        }); // JSON
     }); 
 });
 
