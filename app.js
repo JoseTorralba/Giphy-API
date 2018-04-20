@@ -4,14 +4,16 @@ $(document).ready(function () {
     // Maybe things like game genres?
     const videoGames = [
         "witcher 3",
-        "Monster Hunter World"
+        "need for speed",
+        "Monster Hunter World",
+        "FIFA"
     ];
 
     // Array of filters for video games
     // Can be changed to like game ratings or something to go with the first array
     const filterChoices = [
         "Main Characters",
-        "maps",
+        "brand",
         "Enemies"
     ];
     
