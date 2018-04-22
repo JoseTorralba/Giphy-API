@@ -1,22 +1,32 @@
+// Animated Scroll
+$('#submit').click(function () {
+
+    $('html, body').animate({
+        scrollTop: $('#gifs').offset().top
+    }, 1000);
+});
+
 $(document).ready(function () {
 
-    // Array of video games, can be changed to anything video game related
-    // Maybe things like game genres?
+    // Array of video games
     const videoGames = [
         "witcher 3",
         "need for speed",
+        "Kingdom Hearts",
+        "Bloodborne",
+        "Fallout 4",
+        "Resident Evil",
         "Monster Hunter World",
-        "FIFA"
+        "Dark Souls"
     ];
 
     // Array of filters for video games
-    // Can be changed to like game ratings or something to go with the first array
     const filterChoices = [
         "Main Characters",
-        "brand",
+        "Enemies",
+        "Areas",
         "Enemies"
     ];
-    
     
     let videoGameQuery = "";
     let filterQuery = "";
@@ -53,17 +63,19 @@ $(document).ready(function () {
     }
 
 
-    // Shows Gif results when button is clicked
+    // Shows Gif results when sumbit button is clicked
     $('#submit').click(function (event) {
 
         var offset = Math.round(Math.random() * 100);
+
         var query = videoGameQuery + "+" + filterQuery;
+
         var key = "gc7kXsvMsDTr6mMHxbc8FMK8D23EPLG2";
         var url = "https://api.giphy.com/v1/gifs/search?q="
             + query
             + "&api_key=" 
             + key
-            + "&limit=15"
+            + "&limit=10"
             + "&offset="
             + offset;
 
@@ -88,18 +100,6 @@ $(document).ready(function () {
 
                 $('#gifs').append(imgContainer);
             }
-        }); // JSON
+        });
     }); 
 });
-
-
-
-
-
-
-
-
-
-
-
-
