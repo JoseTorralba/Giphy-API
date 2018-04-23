@@ -35,11 +35,23 @@ h3 {
     color: #CFEC3A;
 }
 
+h3:after {
+    display: block;
+    height: 2px;
+    background-color: #778d0c;
+    content: " ";
+    width: 50px;
+    margin: 0 auto;
+    margin-top: 6px;
+    margin-bottom: 30px;
+}
+
 p {
     width: 900px;
     margin: 0 auto;
     padding: 1em;
     line-height: 30px;
+    font-size: 18px;
 }
 
 a {
@@ -48,7 +60,7 @@ a {
     transition: color 0.5s;
 }
 
-a:hover { color: #43aa36; }
+a:hover { color: #778d0c; }
 
 /* Buttons */
 #buttonDiv {
@@ -56,7 +68,15 @@ a:hover { color: #43aa36; }
     margin: 0 auto;
     margin-bottom: 2em;
     display: grid;
-    grid-template-columns:  1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#filterDiv {
+    width: 900px;
+    margin: 0 auto;
+    margin-bottom: 2em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 button {
@@ -90,13 +110,12 @@ button:hover {
     transition: transform 0.5s;
 }
 
-#submit { margin-top: 6em; }
+#submit { margin-top: 5em;}
 
 /* GIF Section */
 #gifs {
-    width: 1200px;
-    margin: 0 auto;
-    padding-top: 2em;
+	width: 1300px;
+	margin: 0 auto;
     display: grid;
     grid-template-columns:  1fr 1fr 1fr;
 }
@@ -104,7 +123,7 @@ button:hover {
 .gif {
     display: inline-block;
     height: 200px;
-    padding: 1em;
+    padding: 1.2em;
 }
 
 .gif img {
@@ -114,5 +133,3 @@ button:hover {
 }
 
 .gif img:hover { transform: scale(1.10); }
-
-

@@ -10,12 +10,12 @@ $(document).ready(function () {
 
     // Array of video games
     const videoGames = [
-        "witcher 3",
-        "need for speed",
-        "Kingdom Hearts",
         "Bloodborne",
+        "The Witcher 3",
+        "God of War",
+        "Kingdom Hearts",
         "Fallout 4",
-        "Resident Evil",
+        "Silent Hill",
         "Monster Hunter World",
         "Dark Souls"
     ];
@@ -25,9 +25,10 @@ $(document).ready(function () {
         "Main Characters",
         "Enemies",
         "Areas",
-        "Enemies"
+        "Gameplay"
     ];
     
+    // Empty Strings
     let videoGameQuery = "";
     let filterQuery = "";
 
@@ -43,7 +44,6 @@ $(document).ready(function () {
 
         gifBtn.appendChild(createButton);
     }
-
 
     $('.video-game').on('click', function () {
         videoGameQuery = this.value;
@@ -75,7 +75,7 @@ $(document).ready(function () {
             + query
             + "&api_key=" 
             + key
-            + "&limit=10"
+            + "&limit=12"
             + "&offset="
             + offset;
 
