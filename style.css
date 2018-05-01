@@ -115,7 +115,7 @@ button:hover {
 
 /* GIF Section */
 #gifs {
-	width: 1300px;
+	width: 1200px;
 	margin: 0 auto;
     display: grid;
     grid-template-columns:  1fr 1fr 1fr;
@@ -130,7 +130,6 @@ button:hover {
 .gif img {
     width: 100%;
     transition: transform 0.5s;
-    border-radius: 10px;
 }
 
 .gif img:hover { transform: scale(1.10); }
