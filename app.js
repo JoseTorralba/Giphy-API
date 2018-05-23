@@ -8,55 +8,51 @@ $('#submit').click(function () {
 
 $(document).ready(function () {
 
-    // Array of video games
-    const videoGames = [
-        "Bloodborne",
-        "The Witcher 3",
-        "God of War",
-        "Kingdom Hearts",
-        "Fallout 4",
-        "Silent Hill",
-        "Monster Hunter World",
-        "Dark Souls"
+    // Array of movies genre
+    const movieGenre = [
+        "Western Movies",
+        "Comedy Movies",
+        "Drama Movies", 
+        "Thriller Movies",
+        "Horror Movies",
+        "Adventure Movies",
+        "Rated X Movies",
+        "Action Movies"
     ];
 
-    // Array of filters for video games
+    // Array of filters for movie genre
     const filterChoices = [
-        "Main Characters",
-        "Enemies",
-        "Areas",
-        "Gameplay"
     ];
     
     // Empty Strings
-    let videoGameQuery = "";
-    let filterQuery = "";
+    let movieGenreQuery = "";
+
 
     // Displays Gif Buttons
-    for (var i = 0; i < videoGames.length; i++) {
+    for (var i = 0; i < movieGenre.length; i++) {
 
         const gifBtn = document.getElementById('buttonDiv');
         const createButton = document.createElement('button');
-        createButton.classList.add("video-game");
+        createButton.classList.add("movie-genre");
 
-        createButton.innerHTML = videoGames[i];
-        createButton.value = videoGames[i];
+        createButton.innerHTML = movieGenre[i];
+        createButton.value = movieGenre[i];
 
         gifBtn.appendChild(createButton);
     }
 
-    $('.video-game').on('click', function () {
-        videoGameQuery = this.value;
+    $('.movie-genre').on('click', function () {
+        movieGenreQuery = this.value;
     });
 
 
     // Displays Filter Buttons
-    for (var i = 0; i < filterChoices.length; i++) {
+  for (var i = 0; i < filterChoices.length; i++) {
 
         const filterBtn = document.getElementById('filterDiv');
-        const createFilterBtn = document.createElement('button');
+       const createFilterBtn = document.createElement('button');
 
-        createFilterBtn.innerHTML = filterChoices[i];
+       createFilterBtn.innerHTML = filterChoices[i];
         createFilterBtn.value = filterChoices[i];
 
         filterBtn.appendChild(createFilterBtn);
@@ -68,7 +64,7 @@ $(document).ready(function () {
 
         var offset = Math.round(Math.random() * 100);
 
-        var query = videoGameQuery + "+" + filterQuery;
+        var query = movieGenreQuery;
 
         var key = "gc7kXsvMsDTr6mMHxbc8FMK8D23EPLG2";
         var url = "https://api.giphy.com/v1/gifs/search?q="
