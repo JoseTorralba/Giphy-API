@@ -1,6 +1,5 @@
 // Animated Scroll
 $('#submit').click(function () {
-
     $('html, body').animate({
         scrollTop: $('#gifs').offset().top
     }, 1000);
@@ -10,23 +9,18 @@ $(document).ready(function () {
 
     // Array of movies genre
     const movieGenre = [
-        "Western Movies",
-        "Comedy Movies",
-        "Drama Movies", 
-        "Thriller Movies",
-        "Horror Movies",
-        "Adventure Movies",
-        "Rated X Movies",
-        "Action Movies"
+        "Western Games",
+        "First Person Games",
+        "Role Playing Games", 
+        "Thriller Games",
+        "Horror Games",
+        "Adventure Games",
+        "Third Person Games",
+        "Action Games"
     ];
 
-    // Array of filters for movie genre
-    const filterChoices = [
-    ];
-    
-    // Empty Strings
-    let movieGenreQuery = "";
-
+    // Empty String
+    let videoGameGenre = "";
 
     // Displays Gif Buttons
     for (var i = 0; i < movieGenre.length; i++) {
@@ -42,30 +36,14 @@ $(document).ready(function () {
     }
 
     $('.movie-genre').on('click', function () {
-        movieGenreQuery = this.value;
+        videoGameGenre = this.value;
     });
-
-
-    // Displays Filter Buttons
-  for (var i = 0; i < filterChoices.length; i++) {
-
-        const filterBtn = document.getElementById('filterDiv');
-       const createFilterBtn = document.createElement('button');
-
-       createFilterBtn.innerHTML = filterChoices[i];
-        createFilterBtn.value = filterChoices[i];
-
-        filterBtn.appendChild(createFilterBtn);
-    }
-
 
     // Shows Gif results when sumbit button is clicked
     $('#submit').click(function (event) {
 
         var offset = Math.round(Math.random() * 100);
-
-        var query = movieGenreQuery;
-
+        var query = videoGameGenre;
         var key = "gc7kXsvMsDTr6mMHxbc8FMK8D23EPLG2";
         var url = "https://api.giphy.com/v1/gifs/search?q="
             + query
@@ -95,7 +73,7 @@ $(document).ready(function () {
                 imgContainer.append(imgElem)
 
                 $('#gifs').append(imgContainer);
-            }
+            };
         });
     }); 
 });
