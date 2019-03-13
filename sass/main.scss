@@ -1,3 +1,19 @@
+// MEDIA QUERY MANAGER
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 37.5em) { @content };
+    }
+    @if $breakpoint == tablet-portrait {
+        @media only screen and (max-width: 56.25em) { @content };
+    }
+    @if $breakpoint == tablet-landscape {
+        @media only screen and (max-width: 75em) { @content };
+    }
+    @if $breakpoint == big-desktop {
+        @media only screen and (min-width: 112.5em) { @content };
+    }
+}
+
 *,
 *::after,
 *::before {
@@ -9,6 +25,22 @@
 html { 
     background-color: #000;
     font-size: 62.5%;
+
+    @include respond(phone) {
+        font-size: 56.25%; // 1 rem = 9px; 9/16
+    }
+
+    @include respond(tablet-landscape) {
+        font-size: 56.25%; // 1 rem = 9px; 9/16
+    }
+
+    @include respond(tablet-portrait) {
+        font-size: 50%; // 1 rem = 8px; 8/16 = 50%
+    }
+
+    @include respond(big-desktop) {
+        font-size: 75%; // 1 rem = 12px;
+    }
 }
 
 body {
@@ -70,11 +102,11 @@ body {
     }
 
     &__details {
-        font-size: 18px;
-        line-height: 30px;
+        font-size: 1.7rem;
+        line-height: 3rem;
         margin: 0 auto;
         padding: 2rem;
-        width: 950px;
+        width: 95rem;
     }
 }
 
@@ -136,6 +168,7 @@ body {
     border-radius: 10rem;
     border-color: #fff;
     color: #fff;
+    opacity: 0;
     font-size: 1.4rem;
     letter-spacing: 2px;
     margin-bottom: 4rem;
@@ -155,29 +188,40 @@ body {
         background-color: #000;
         border-color: #CFEC3A;
         color: #CFEC3A;
-        cursor: pointer;
     }
 }
 
 // Gif Container
 .gif-container {
-	width: 1200px;
 	margin: 0 auto;
     display: grid;
-    grid-template-columns:  1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5rem;
 
     &__gif {
         display: inline-block;
-        height: 200px;
-        padding: 1.2em;
+        height: 25rem;
 
         &--img {
             width: 100%;
-            transition: transform 0.5s;
+            transition: all 0.3s;
+            border: 2px transparent;
 
             &:hover {
                 transform: scale(1.10);
+                border: 2px solid #CFEC3A;
+                border-radius: 3px;
             }
         }
+    }
+}
+
+.row {
+    max-width: 120rem;
+    margin: 0 auto;
+
+    @include respond(tablet-portrait) {
+        max-width: 100rem;
+        padding: 30rem;
     }
 }

@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function() {
         },
     };
 
-
     // Loops Through gameGenreObj
     for (var key in gameGenreObj) {
         if (gameGenreObj.hasOwnProperty(key)) {
@@ -49,7 +48,8 @@ document.addEventListener("DOMContentLoaded", function() {
             createListItem.classList.add('genre-showcase__list');
             createListItem.innerHTML = `
                 <figure class="genre-showcase__fig">
-                    <button class="genre-showcase__btn" value="${gameGenreObj[key]['genre']}">${gameGenreObj[key]['genre']}
+                    <button class="genre-showcase__btn" value="${gameGenreObj[key]['genre']}">
+                        ${gameGenreObj[key]['genre']}
                         <i class="${gameGenreObj[key]['icon']} genre-showcase__btn--icon"></i> 
                     </button>
                 </figure>
@@ -59,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
+    // Gets Submit Button by Class
+    var submitButton = document.querySelector('.submit-btn');
 
     // Gets Genre Button by Class
     var genreButton = document.querySelectorAll('.genre-showcase__btn');
@@ -66,14 +68,15 @@ document.addEventListener("DOMContentLoaded", function() {
     // Genre Button on Click
     genreButton.forEach(function (genreButton) {
         genreButton.addEventListener('click', function() {
+
             // Gets Value of Genre Clicked
             videoGameGenre = this.value; 
+
+            // Displays Get Gifs Button
+            submitButton.style.opacity = '1';
+            submitButton.style.cursor = 'pointer';
         });
-	});
-
-
-    // Gets Submit Button by Class
-    var submitButton = document.querySelector('.submit-btn');
+    });
 
     // Submit Button on Click
     submitButton.addEventListener('click', function() {
@@ -87,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function() {
             + "&limit=12"
             + "&offset="
             + offset;
-
 
         // Fetches Giphy API Data
         fetch(url).then(response => {
@@ -119,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log('There is and Error of ' + err);
         });
     });
-
 
     // Animated Scroll
     $('.submit-btn').click(function () {

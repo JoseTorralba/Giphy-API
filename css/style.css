@@ -8,6 +8,18 @@
 html {
   background-color: #000;
   font-size: 62.5%; }
+  @media only screen and (max-width: 37.5em) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media only screen and (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
 
 body {
   background-image: url("../img/ds-bg.gif"), linear-gradient(to bottom, rgba(0, 0, 0, 0.4), black);
@@ -52,11 +64,11 @@ body {
       color: #778d0c; }
 
 .sub-text__details {
-  font-size: 18px;
-  line-height: 30px;
+  font-size: 1.7rem;
+  line-height: 3rem;
   margin: 0 auto;
   padding: 2rem;
-  width: 950px; }
+  width: 95rem; }
 
 .genre-showcase {
   margin-bottom: 35rem; }
@@ -99,6 +111,7 @@ body {
   border-radius: 10rem;
   border-color: #fff;
   color: #fff;
+  opacity: 0;
   font-size: 1.4rem;
   letter-spacing: 2px;
   margin-bottom: 4rem;
@@ -113,20 +126,29 @@ body {
   .submit-btn:hover {
     background-color: #000;
     border-color: #CFEC3A;
-    color: #CFEC3A;
-    cursor: pointer; }
+    color: #CFEC3A; }
 
 .gif-container {
-  width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; }
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5rem; }
   .gif-container__gif {
     display: inline-block;
-    height: 200px;
-    padding: 1.2em; }
+    height: 25rem; }
     .gif-container__gif--img {
       width: 100%;
-      transition: transform 0.5s; }
+      transition: all 0.3s;
+      border: 2px transparent; }
       .gif-container__gif--img:hover {
-        transform: scale(1.1); }
+        transform: scale(1.1);
+        border: 2px solid #CFEC3A;
+        border-radius: 3px; }
+
+.row {
+  max-width: 120rem;
+  margin: 0 auto; }
+  @media only screen and (max-width: 56.25em) {
+    .row {
+      max-width: 100rem;
+      padding: 30rem; } }

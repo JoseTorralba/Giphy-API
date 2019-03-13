@@ -2,22 +2,29 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Giphy API</title>
         <!-- CSS -->
         <link rel="stylesheet" href="css/style.css">
         <!-- FONT -->
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400" rel="stylesheet">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <title>Giphy API</title>
     </head>
     <body>
         <h1 class="primary-heading">Giphy API</h1>
-
-        <p class="sub-text__contributors">By <a href="https://josetorralba.github.io/MMP310/index.html" target="_blank" class="sub-text__contributors--links">Jose Torralba</a> & <a href="#" class="sub-text__contributors--links">Marlon Brown</a>
+        <!-- Links -->
+        <p class="sub-text__contributors">
+            By 
+            <a href="https://josetorralba.github.io/MMP310/index.html" target="_blank" class="sub-text__contributors--links">
+                Jose Torralba
+            </a> 
+            & 
+            <a href="#" class="sub-text__contributors--links">
+                Marlon Brown
+            </a>
         </p>
 
-        <p class="sub-text__details">Pick any Video Game genre listed below and click "Get Gifs" To get a set of Gifs back.</p>
-
+        <p class="sub-text__details">Pick any Video Game genre listed below then click "Get Gifs" To get a set of Gifs back.</p>
         <h2 class="secondary-heading">Video Game Genres:</h2>
         
         <!-- Displays Buttons -->
@@ -27,9 +34,11 @@
         <button href="#gifs" class="submit-btn">Get Gifs</button>
 
         <!-- Displays Gifs -->
-        <div class="gif-container" id="gifs"></div>
+        <div class="row gif-container" id="gifs"></div>
 
+        <!-- jQuery for Animated Scrolling -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Javascript -->
         <script src="app.js"></script>
     </body>
 </html>
