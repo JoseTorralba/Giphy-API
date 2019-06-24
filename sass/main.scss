@@ -1,5 +1,16 @@
+// Clears Float
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
 // MEDIA QUERY MANAGER
 @mixin respond($breakpoint) {
+    @if $breakpoint == smaller-phone {
+        @media only screen and (max-width: 25.875em) { @content };
+    }
     @if $breakpoint == phone {
         @media only screen and (max-width: 37.5em) { @content };
     }
@@ -25,25 +36,13 @@
 html { 
     background-color: #000;
     font-size: 62.5%;
-
-    @include respond(phone) {
-        font-size: 56.25%; // 1 rem = 9px; 9/16
-    }
-
-    @include respond(tablet-landscape) {
-        font-size: 56.25%; // 1 rem = 9px; 9/16
-    }
-
-    @include respond(tablet-portrait) {
-        font-size: 50%; // 1 rem = 8px; 8/16 = 50%
-    }
-
-    @include respond(big-desktop) {
-        font-size: 75%; // 1 rem = 12px;
-    }
+    @include respond(phone) { font-size: 56.25%; }
+    @include respond(tablet-landscape) { font-size: 56.25%; }
+    @include respond(tablet-portrait) { font-size: 50%; }
+    @include respond(big-desktop) { font-size: 75%; }
 }
 
-body {
+.selection-section {
     background-image: url("../img/ds-bg.gif"), 
         linear-gradient(to bottom, 
             rgba(0, 0, 0, 0.4), 
@@ -55,38 +54,31 @@ body {
     color: #fff;
     font-family: 'Roboto Mono', monospace;
     height: 100vh;
+    padding: 0;
     text-align: center;
 }
 
-// Headers
-.primary-heading {
-    font-weight: 100;
-    font-size: 5rem;
-    letter-spacing: 5px;
-    padding-top: 4rem;
-    padding-bottom: 1rem;
-    text-transform: uppercase;
+.gif-section {
+    display: none;
+    padding: 6rem 2rem;
 }
 
-.secondary-heading {
-    color: #CFEC3A;
-    font-size: 2rem;
-    padding-top: 2rem;
+// Text Container
+.text-box {
+    margin: 0 auto;
 
-    &:after {
-        display: block;
-        background-color: #778d0c;
-        content: " ";
-        height: 2px;
-        width: 13rem;
-        margin: 0 auto;
-        margin-top: 1rem;
-        margin-bottom: 3rem;
+    &__heading {
+        font-weight: 100;
+        font-size: 5rem;
+        letter-spacing: 5px;
+        padding-top: 4rem;
+        padding-bottom: 1rem;
+        text-transform: uppercase;
+        @include respond(smaller-phone) {
+            font-size: 3.5rem;
+        }
     }
-}
 
-// Sub Texts
-.sub-text {
     &__contributors {
         font-size: 1.5rem;
 
@@ -104,41 +96,63 @@ body {
     &__details {
         font-size: 1.7rem;
         line-height: 3rem;
-        margin: 0 auto;
-        padding: 2rem;
-        width: 95rem;
+        padding: 2rem 0;
+
+        @include respond(smaller-phone) {
+            font-size: 1.5rem;
+        }
+    }
+
+    &__sub-heading {
+        color: #CFEC3A;
+        font-size: 2rem;
+        padding-top: 2rem;
+    
+        &:after {
+            display: block;
+            background-color: #778d0c;
+            content: " ";
+            height: 2px;
+            width: 13rem;
+            margin: 0 auto;
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        @include respond(smaller-phone) {
+            padding-top: 0;
+        }
+    }
+
+    @include respond(tablet-portrait) {
+        max-width: 50rem;
+        padding: 0 3rem;
     }
 }
 
 // List of Buttons
 .genre-showcase {
-    margin-bottom: 35rem;
+    @include clearfix;
 
-    &__list {
-        display: block;
+    &__container {
+        // display: block;
         float: left;
         width: 25%;
-    }
-
-    &__fig {
-        width: 100%;
-        // Height is Important
-        height: 14rem;
-        margin: 0;
         overflow: hidden;
         transition: all .3s;
+
+        @include respond(phone) {
+            width: 50%;
+        }
     }
 
     &__btn {
-        position: relative;
         background-color: rgba(30, 30, 30, 0.76);
         border: none;
         color: #fff;
         display: block;
         font-size: 2rem;
         width: 100%;
-        // Padding is Important
-        padding: 10rem 0;
         transition: all .2s;
 
         &:hover,
@@ -153,10 +167,21 @@ body {
             color: #CFEC3A;
             display: block;
             font-size: 6rem;
-            position: absolute;
-            top: 2rem;
-            left: 50%;
-            transform: translate(-50%);
+            padding: 2rem 0 0;
+
+            @include respond(smaller-phone) {
+                font-size: 4.5rem;
+                padding: 1.2rem 0;
+            }
+
+        }
+
+        &--text {
+            padding: 2rem 0;
+            @include respond(smaller-phone) {
+                font-size: 1.5rem;
+                padding: 1.3rem 0;
+            }
         }
     }
 }
@@ -175,7 +200,7 @@ body {
     padding: 1.5rem 3rem;
     text-transform: uppercase;
     transition: all .2s;
-
+    margin-top: 3rem;
     &:active,
     &:focus {
         background-color: #000;
@@ -196,16 +221,22 @@ body {
 	margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 5rem;
+    grid-gap: 3rem;
+
+
+    @include respond(phone) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 5rem;
+    }
 
     &__gif {
         display: inline-block;
-        height: 25rem;
 
         &--img {
             width: 100%;
             transition: all 0.3s;
             border: 2px transparent;
+
 
             &:hover {
                 transform: scale(1.10);
@@ -222,6 +253,5 @@ body {
 
     @include respond(tablet-portrait) {
         max-width: 100rem;
-        padding: 30rem;
     }
 }
