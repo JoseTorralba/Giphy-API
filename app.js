@@ -37,22 +37,12 @@ document.addEventListener("DOMContentLoaded", function() {
         },
     };
 
-    // Gets Submit & Genre Button / Gif Section by Class
+    // Gets Submit & Gif Section by Class
     var getSubmitButton = document.querySelector('.submit-btn');
-    var genreButton = document.querySelectorAll('.genre-showcase__btn');
     var getGifSection = document.querySelector('.gif-section');
-    var videoGameGenre;
 
-    // Genre Button on Click
-    genreButton.forEach(function (genreButton) {
-        genreButton.addEventListener('click', function() {
 
-            // Gets Value of Genre Clicked
-            videoGameGenre = this.value; 
-        });
-    });
-
-    function getRandomGifs() {
+    function getRandomGifs(genreValue) {
         // Displays Gif Section
         getGifSection.style.display = 'block';
         var offset = Math.round(Math.random() * 100);
@@ -61,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         fetch(`https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${key}&limit=12&offset=${offset}`)
         .then(function (response) {
-    
             response.json()
 
             .then(function (giphy) {
@@ -116,9 +105,19 @@ document.addEventListener("DOMContentLoaded", function() {
     // Displays Genre Buttons
     createGenreButtons()
 
+    // Genre Button on Click
+    var genreButton = document.querySelectorAll('.genre-showcase__btn');
+    genreButton.forEach(function (genreButton) {
+        genreButton.addEventListener('click', function() {
+
+            // Gets Value of Genre Clicked
+            videoGameGenre = this.value; 
+        });
+    });
+
     // Submit Button on Click
     getSubmitButton.addEventListener('click', function() {
-        getRandomGifs();
+        getRandomGifs(videoGameGenre);
     });
 
     // Animated Scroll
