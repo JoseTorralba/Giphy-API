@@ -1,5 +1,6 @@
 // Document on ready
 document.addEventListener("DOMContentLoaded", function() {
+    
     // Video Game Genre Object
     const gameGenreObj = {
         western: {
@@ -36,39 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
         },
     };
 
-    // Loops Through gameGenreObj object
-    for (var key in gameGenreObj) {
-        if (gameGenreObj.hasOwnProperty(key)) {
-
-            // Gets div Tag by Class
-            const buttonContainer = document.querySelector('.genre-showcase');
-
-            // Creates Buttons
-            const createListItem = document.createElement('div');
-            createListItem.classList.add('genre-showcase__container');
-            createListItem.innerHTML = `
-
-                <button class="genre-showcase__btn" value="${gameGenreObj[key]['genre']}">
-                    <i class="${gameGenreObj[key]['icon']} genre-showcase__btn--icon"></i> 
-                    <p class="genre-showcase__btn--text">${gameGenreObj[key]['genre']}</p>
-                    
-                </button>
-
-            `;
-
-            // Appends Create List Item
-            buttonContainer.appendChild(createListItem);
-        }
-    };
-
-    // Gets Submit Button by Class
-    var submitButton = document.querySelector('.submit-btn');
-
-    // Gets Genre Button by Class
+    // Gets Submit & Genre Button / Gif Section by Class
+    var getSubmitButton = document.querySelector('.submit-btn');
     var genreButton = document.querySelectorAll('.genre-showcase__btn');
-
-    // Gets Gif Section by class
     var getGifSection = document.querySelector('.gif-section');
+    var videoGameGenre;
 
     // Genre Button on Click
     genreButton.forEach(function (genreButton) {
@@ -76,58 +49,76 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Gets Value of Genre Clicked
             videoGameGenre = this.value; 
-
-            // Displays Get Gifs Button
-            submitButton.style.opacity = '1';
-            submitButton.style.cursor = 'pointer';
         });
     });
 
-    // Submit Button on Click
-    submitButton.addEventListener('click', function() {
-
+    function getRandomGifs() {
+        // Displays Gif Section
         getGifSection.style.display = 'block';
-
         var offset = Math.round(Math.random() * 100);
         var query = videoGameGenre;
         var key = "gc7kXsvMsDTr6mMHxbc8FMK8D23EPLG2";
-        var url = "https://api.giphy.com/v1/gifs/search?q="
-            + query
-            + "&api_key=" 
-            + key
-            + "&limit=12"
-            + "&offset="
-            + offset;
 
-        // Fetches Giphy API Data
-        fetch(url).then(response => {
-            return response.json();
-        }).then(giphy => {
+        fetch(`https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${key}&limit=12&offset=${offset}`)
+        .then(function (response) {
+    
+            response.json()
 
-            // Gets Gif Container Div and Hides previous Gif results
-            const getGifContainer = document.querySelector('.gif-container');
-            getGifContainer.innerHTML = "";
+            .then(function (giphy) {
 
-            for (let i = 0; i < giphy.data.length; i++) {
-                const gif = giphy.data[i];
+                // Gets Gif Container Div and Hides previous Gif results
+                const getGifContainer = document.querySelector('.gif-container');
+                getGifContainer.innerHTML = "";
 
-                // Creates Div Containing Gif
-                const imgContainer = document.createElement('div');
-                imgContainer.classList.add('gif-container__gif');
+                for (let i = 0; i < giphy.data.length; i++) {
+                    const gif = giphy.data[i];
 
-                // Creates Img to Display Gif
-                const createImg = document.createElement('img');
-                createImg.setAttribute('src', gif.images.downsized.url);
-                createImg.classList.add('gif-container__gif--img')
+                    // Creates Div Containing Gif
+                    const imgContainer = document.createElement('div');
+                    imgContainer.classList.add('gif-container__gif');
 
-                // Display Gifs
-                imgContainer.append(createImg)
-                getGifContainer.append(imgContainer);
-            };
+                    // Creates Img to Display Gif
+                    const createImg = document.createElement('img');
+                    createImg.setAttribute('src', gif.images.downsized.url);
+                    createImg.classList.add('gif-container__gif--img')
 
-        }).catch(err => {
-            console.log('There is and Error of ' + err);
-        });
+                    // Display Gifs
+                    imgContainer.append(createImg)
+                    getGifContainer.append(imgContainer);
+                };
+            })
+        })
+    }
+
+    function createGenreButtons() {
+        // Loops Through gameGenreObj object
+        for (var genre in gameGenreObj) {
+
+            if (gameGenreObj.hasOwnProperty(genre)) {
+
+                // Gets Button Container by Class Then Creates Buttons
+                const getGenreButtonContainer = document.querySelector('.genre-showcase');
+                const displayGenreButton = document.createElement('div');
+
+                displayGenreButton.classList.add('genre-showcase__container');
+                displayGenreButton.innerHTML = `
+                    <button class="genre-showcase__btn" value="${gameGenreObj[genre]['genre']}">
+                        <i class="${gameGenreObj[genre]['icon']} genre-showcase__btn--icon"></i> 
+                        <p class="genre-showcase__btn--text">${gameGenreObj[genre]['genre']}</p>
+                        
+                    </button>
+                `;
+                // Appends Genre Buttons
+                getGenreButtonContainer.appendChild(displayGenreButton);
+            }
+        };
+    }
+    // Displays Genre Buttons
+    createGenreButtons()
+
+    // Submit Button on Click
+    getSubmitButton.addEventListener('click', function() {
+        getRandomGifs();
     });
 
     // Animated Scroll

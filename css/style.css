@@ -68,6 +68,9 @@ html {
     color: #CFEC3A;
     font-size: 2rem;
     padding-top: 2rem; }
+    @media only screen and (max-width: 25.875em) {
+      .text-box__sub-heading {
+        padding-top: 0; } }
     .text-box__sub-heading:after {
       display: block;
       background-color: #778d0c;
@@ -77,9 +80,6 @@ html {
       margin: 0 auto;
       margin-top: 1rem;
       margin-bottom: 3rem; }
-    @media only screen and (max-width: 25.875em) {
-      .text-box__sub-heading {
-        padding-top: 0; } }
   @media only screen and (max-width: 56.25em) {
     .text-box {
       max-width: 50rem;
@@ -130,10 +130,10 @@ html {
 .submit-btn {
   background-color: rgba(30, 30, 30, 0.801);
   border: 1px #fff solid;
-  border-radius: 10rem;
+  border-radius: 5px;
   border-color: #fff;
   color: #fff;
-  opacity: 0;
+  cursor: pointer;
   font-size: 1.4rem;
   letter-spacing: 2px;
   margin-bottom: 4rem;
